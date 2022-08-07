@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>customize_combo_offer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        :root {
+
+            /* --primaryColor: #BD8448;
+            --secondaryColor: #fff;
+            --textColor: #1E272E;
+            --variantTextColor: #707070;
+            --themeFont: "Poppins"; */
+            --primaryColor: #BD8448;
+            --secondaryColor: #fff;
+            --textColor: #1E272E;
+            --headingColor:#1E272E;
+            --itemOverlayColor: #1E272E;
+            --sectionBgColor:#1E272E;
+            --sectionOverlayColor:#1E272E;
+            --tabBtnColor:#1E272E;
+            --imgBgColor: #f8f8f8;
+            --itemShadowColor: rgba(30, 39, 46, .08);
+            --hoverBtnBgColor: #1E272E;
+            --hoverBtnColor: #fff;
+            --comboPopupBg:#1E272E;
+            --comboDetailsBg:#fff;
+            --comboDetailsTilteColor:#1E272E;
+            --comboCloseIconColor:#000000;
+            --indicatorColor:#1E272E;
+            --themeFont: "Poppins";
+        }
+
+        .s0005_universl * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--themeFont);
+        }
+
+        .s0005_container {
+            max-width: 1360px;
+            width: 100%;
+            padding: 0px 20px;
+            margin: 0 auto;
+        }
+
+        .s0005_common_btn {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--textColor);
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .s0005_combo_offer_section{
+            position: relative;
+        }
+        .s0005_combo_offer_section{
+            /* background-color: var(--sectionBgColor);
+            background-image: url("https://i.ibb.co/jyqDr4d/360-F-337963325-EJu-Pj-Wsl-X3v-AFx-J59-L3y1cm6-Is-Sfo07s.jpg");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat; */
+        }
+        .s0005_section_overlay{
+            /* position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color:var(--sectionOverlayColor);
+            opacity: .80; */
+        }
+
+        .s0005_combo_offer_area {
+            padding: 25px 0;
+        }
+
+        /* s0005_combo_offer_top */
+        .s0005_combo_offer_top_wrapper {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .s0005_title_and_counter_between {
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .s0005_title_and_counter_center {
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+
+        .s0005_section_title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--textColor);
+        }
+
+
+        .s0005_time_duration_box {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .s0005_time_count,
+        .s0005_time_separator,
+        .s0005_product_name,
+        .s0005_product_variant_txt,
+        .s0005_product_price {
+            font-size: 12px;
+            color: var(--textColor);
+        }
+
+        .s0005_time_count,
+        .s0005_time_separator,
+        .s0005_product_price {
+            font-weight: 500;
+        }
+
+        .s0005_time_separator {
+            opacity: .3;
+        }
+
+        /* ============= s0005_combo_products_area ========== */
+
+        .s0005_combo_all_products {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 25px;
+            column-gap: 20px;
+        }
+
+        /* s0005_single_product */
+
+        .s0005_single_product{
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        .s0005_card_shadow{
+            box-shadow: 0 0 4px var(--itemShadowColor);
+        }
+
+        /* s0005_product_top */
+        .s0005_product_top {
+            position: relative;
+            background-color: var(--imgBgColor);
+        }
+
+        .s0005_item_overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--itemOverlayColor);
+            z-index: 6;
+            visibility: hidden;
+            opacity: 0;
+            transition: .5s ease;
+
+        }
+
+        .s0005_product_img img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+
+        /* s0005_batch_wrapper */
+        .s0005_batch_wrapper {
+            position: absolute;
+            top: 7px;
+            display: flex;
+            transform: rotate(90deg);
+            z-index: 7;
+        }
+
+        .s0005_batch_position_left {
+            left: 8px;
+        }
+
+        .s0005_batch_position_right {
+            right: 8px;
+        }
+
+        .s0005_batch_txt {
+            font-size: 8px;
+            font-weight: 600;
+            color: var(--secondaryColor);
+            padding: 2px 6px;
+            background-color: var(--primaryColor);
+        }
+
+
+        /* s0005_wishlist_and_cart_icon */
+
+        .s0005_icon_group {
+            position: absolute;
+            /* bottom: 15px;
+            right: 15px; */
+            bottom: 8px;
+            right: 8px;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 6;
+        }
+
+        .s0005_icon_group_wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .s0005_icon {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border: 1px solid rgba(30, 39, 46, .05);
+            transition: .5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .s0005_icon svg {
+            width: 10px;
+            height: 10px;
+            transform: scale(1);
+            transition: .5s ease;
+        }
+
+        .s0005_view_details_icon svg {
+            width: 11px;
+            height: 11px;
+            transform: scale(1);
+            transition: .5s ease;
+        }
+
+        .s0005_tooltip {
+            position: absolute;
+            right: 9px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all .5s ease-in-out;
+        }
+
+        .s0005_tooltip_txt {
+            font-size: 10px;
+            font-weight: 400;
+            color: #fff;
+            background-color: #1E272E;
+            border-radius: 2px;
+            padding: 3px 10px;
+            position: relative;
+            z-index: 1;
+            width: 100px;
+            text-align: center;
+        }
+
+        .s0005_tooltip_txt_wrapper {
+            position: relative;
+        }
+
+        .s0005_tooltip_txt_wrapper::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -1px;
+            width: 5px;
+            height: 5px;
+            background-color: #1E272E;
+            transform: rotate(45deg) translate(0, -45%);
+            z-index: -1;
+            transition: .5s;
+
+        }
+
+        .s0005_wishlist_icon_wrapper {
+            transition: .5s;
+        }
+
+        .s0005_wishlist_icon_wrapper:hover .s0005_tooltip,
+        .s0005_cart_icon_wrapper:hover .s0005_tooltip,
+        .s0005_view_details_icon_wrapper:hover .s0005_tooltip {
+            visibility: visible;
+            opacity: 1;
+            right: 26px;
+        }
+
+
+        .s0005_item_action {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 190px;
+            z-index: 8;
+            visibility: hidden;
+            opacity: 0;
+            transition: all .3s ease-in-out;
+            transform: translateX(100%);
+        }
+
+
+        .s0005_product_top:hover .s0005_item_action {
+            transform: translateX(-50%);
+        }
+
+
+
+        /* .s0005_item_action_show {
+            visibility: visible;
+            opacity: 1;
+        } */
+
+        .s0005_item_action_content {
+            background-color: #fff;
+            padding: 11px 10px;
+        }
+
+        .s0005_item_action_txt {
+            font-size: 12px;
+            font-weight: 500;
+            color: green;
+            text-align: center;
+            display: block;
+        }
+
+        .s0005_error_message {
+            color: red;
+        }
+
+
+        /* s0005_product_bottom */
+        .s0005_product_bottom {
+            margin-top: 8px;
+            padding: 0px 8px 8px 8px;
+        }
+
+        .s0005_product_content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .s0005_product_content_left {
+            align-items: flex-start;
+        }
+
+        .s0005_product_content_center {
+            align-items: center;
+        }
+        .s0005_product_content_right {
+            align-items: flex-end;
+        }
+
+        .s0005_product_name,
+        .s0005_product_variant_txt {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--textColor);
+            display: block;
+        }
+
+        .s0005_product_variant_txt {
+            opacity: .5;
+        }
+
+
+
+        .s0005_product_review_area {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            z-index: 7;
+        }
+
+        .s0005_review_star {
+            display: flex;
+        }
+
+        .s0005_review_star svg {
+            width: 11px;
+            height: 11px;
+        }
+
+        .s0005_product_name {
+            font-weight: 400;
+        }
+
+
+        .s0005_product_price_wrapper {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .s0005_product_price {
+            display: flex;
+            position: relative;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .s0005_product_regular_price {
+            color: var(--primaryColor);
+        }
+        .s0005_product_old_price {
+            opacity: .3;
+            ;
+        }
+
+        .s0005_product_old_price::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 1px;
+            background-color: var(--textColor);
+            opacity: .5;
+        }
+
+        /* s0005_featured_item_btn_wrapper */
+        .s0005_featured_item_btn_wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .s0005_featured_item_btn {
+            background-color: var(--primaryColor);
+            border: none;
+            outline: none;
+            padding: 7.5px 25px;
+            display: inline-block;
+            position: relative;
+            color: var(--secondaryColor);
+            position: relative;
+            z-index: 2;
+            transition: all .4s ease-in-out;
+        }
+
+        /* click effect  */
+        .s0005_active_wishlist_icon,
+        .s0005_active_wishlist_icon {
+            background-color: #000;
+        }
+
+        .s0005_active_wishlist_icon svg path,
+        .s0005_active_cart_icon svg path {
+            stroke: #fff;
+            fill: #fff;
+        }
+
+
+        /* ===========================================
+        ============ s0005_combo_details =============
+        ==========================================  */
+
+        .s0005_combo_details_popup{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+
+        .s0005_combo_details_popup_overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--comboPopupBg);
+            opacity: .5;
+
+        }
+
+        .s0005_combo_details_area{
+            max-width: 325px;
+            width: 100%;
+            max-height: 410px;
+            background-color:var(--comboDetailsBg);
+            border: 1px solid #707070;
+            /* padding: 25px 20px; */
+            position: relative;
+            z-index: 2;
+            overflow-y: scroll;
+        }
+        ::-webkit-scrollbar{
+            display: none;
+        }
+
+        /* s0005_combo_top */
+        .s0005_combo_top{
+            padding: 25px 20px;
+        }
+        .s0005_combo_top_content{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .s0005_combo_details_title{
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--comboDetailsTilteColor);
+        }
+
+        .s0005_combo_close_icon{
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .s0005_combo_close_icon svg{
+            transition:all .4s ease-in-out;
+        }
+        .s0005_combo_close_icon svg path{
+            fill:var(--comboCloseIconColor);
+        }
+        .s0005_combo_close_icon_close svg{
+            transform: rotate(90deg);
+        }
+        .s0005_combo_close_icon_close svg path{
+            fill: var(--primaryColor);
+        }
+        /* s0005_combo_main */
+        .s0005_combo_main{
+           margin-bottom: 25px;
+        }
+        .s0005_combo_main .s0005_combo_all_products{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .s0005_combo_main .s0005_single_product {
+            max-width:calc(50% - 10px)
+        }
+
+        /* s0005_combo_bottom */
+        .s0005_combo_bottom{
+            display: flex;
+            justify-content: flex-end;
+            padding:25px 20px 25px 20px;
+            /* margin-top: 25px; */
+        }
+        .s0005_combo_bottom_inner_content{
+            display: flex;
+            gap: 10px;
+        }
+        .s0005_combo_btn{
+            border: none;
+            outline: none;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--secondaryColor);
+            background-color: var(--primaryColor);
+            padding: 7px 20px;
+        }
+        .s0005_indicator{
+            width: 100%;
+            height: 1px;
+            background-color:var(--indicatorColor);
+            opacity: .1;
+        }
+
+
+
+
+
+
+
+        @media(min-width:640px) {
+            .s0005_combo_offer_area {
+                padding: 40px 0;
+            }
+
+            .s0005_title_and_counter_between {
+                margin-bottom: 25px;
+            }
+
+            .s0005_title_and_counter_center {
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+
+            .s0005_section_title {
+                font-size: 20px;
+            }
+
+            .s0005_time_duration_box {
+                gap: 8px;
+            }
+
+            .s0005_time_count,
+            .s0005_time_separator,
+            .s0005_product_name,
+            .s0005_product_variant_txt,
+            .s0005_product_price{
+                font-size: 14px;
+            }
+
+            /* ============= s0005_combo_products_area ========== */
+
+            .s0005_combo_all_products {
+                grid-template-columns: repeat(3, 1fr);
+                row-gap: 35px;
+                column-gap: 30px;
+            }
+
+            .s0005_wishlist_and_cart_icon {
+                bottom: 10px;
+            }
+
+            .s0005_wishlist_and_cart_icon_wrapper {
+                gap: 10px;
+            }
+
+            /* .s0005_wishlist_icon,
+            .s0005_cart_icon {
+                width: 30px;
+                height: 30px;
+            } */
+            .s0005_icon{
+                width: 30px;
+                height: 30px;
+            }
+
+            .s0005_wishlist_icon svg,
+            .s0005_cart_icon svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            /* batch and wishlist&cart position */
+            .s0005_wishlist_and_cart_icon_left,
+            .s0005_batch_position_left {
+                left: 10px;
+            }
+
+            .s0005_wishlist_and_cart_icon_right,
+            .s0005_batch_position_right {
+                right: 10px;
+            }
+
+            /* s0005_product_bottom */
+            .s0005_product_bottom {
+                margin-top: 10px;
+                padding: 0px 10px 10px 10px;
+            }
+
+            .s0005_product_content {
+                gap: 10px;
+            }
+
+            /* s0005_featured_item_btn_wrapper */
+            .s0005_featured_item_btn_wrapper {
+                margin-top: 30px;
+            }
+
+            .s0005_featured_item_btn {
+                font-size: 14px;
+            }
+
+
+        /* ===========================================
+        ============ s0005_combo_details =============
+        ==========================================  */
+
+        .s0005_combo_details_area{
+            max-width: 570px;
+            max-height: 544px;
+            /* padding:30px; */
+        }
+
+        /* s0005_combo_top */
+        .s0005_combo_top{
+            padding: 30px;
+        }
+        .s0005_combo_details_title{
+            font-size: 20px;
+        }
+
+        /* s0005_combo_main */
+        .s0005_combo_main{
+            padding: 0px 10px;
+            margin-bottom: 45px;
+        }
+
+        .s0005_combo_main .s0005_single_product {
+            max-width:calc(50% - 15px)
+        }
+
+        /* s0005_combo_bottom */
+        .s0005_combo_bottom{
+            padding: 30px;
+        }
+
+        .s0005_combo_btn{
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 25px;
+        }
+
+
+
+
+        }
+
+
+        @media(min-width:1025px) {
+            .s0005_combo_offer_area {
+                padding: 50px 0;
+            }
+
+            .s0005_section_title {
+                font-size: 24px;
+            }
+
+            .s0005_title_and_counter_between {
+                margin-bottom: 30px;
+            }
+
+            /* ============= s0005_combo_products_area ========== */
+
+            .s0005_combo_all_products {
+                grid-template-columns: repeat(4, 1fr);
+                row-gap: 40px;
+            }
+
+            .s0005_batch_position_left {
+                left: 15px;
+            }
+
+            .s0005_batch_position_right {
+                right: 15px;
+            }
+
+            .s0005_icon_group {
+                right: -100%;
+                transition: .5s;
+            }
+
+            .s0005_single_product:hover .s0005_icon_group {
+                right: 15px;
+                bottom: 15px;
+            }
+
+            /* s0005_product_bottom */
+            .s0005_product_bottom {
+                margin-top: 15px;
+            }
+
+            .s0005_product_review_area {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -500%);
+                visibility: hidden;
+                opacity: 0;
+                transition: .5s ease;
+            }
+
+            /* ::HOVER EFFECT */
+
+            .s0005_single_product:hover .s0005_item_overlay {
+                visibility: visible;
+                opacity: .3;
+            }
+
+            .s0005_single_product:hover .s0005_product_review_area {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .s0005_icon:hover {
+                background-color: var(--primaryColor);
+            }
+
+            .s0005_icon:hover svg path {
+                stroke: var(--secondaryColor);
+                fill: var(--secondaryColor);
+            }
+
+
+            .s0005_wishlist_icon_wrapper:hover .s0005_tooltip,
+            .s0005_cart_icon_wrapper:hover .s0005_tooltip,
+            .s0005_view_details_icon_wrapper:hover .s0005_tooltip {
+                right: 36px;
+            }
+
+
+
+            /* === s0005_featured_item_btn === */
+            .s0005_featured_item_btn_wrapper {
+                margin-top: 40px;
+            }
+
+            .s0005_featured_item_btn::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 100%;
+                background-color: var(--hoverBtnBgColor);
+                z-index: -1;
+                transition: all .4s ease-in-out;
+            }
+
+            .s0005_featured_item_btn:hover {
+                color: var(--hoverBtnColor);
+            }
+
+            .s0005_featured_item_btn:hover:after {
+                width: 100%;
+            }
+
+
+        /* ===========================================
+        ============ s0005_combo_details =============
+        ==========================================  */
+
+        .s0005_combo_details_area{
+            max-width: 840px;
+            max-height: 550px;
+        }
+
+        /* s0005_combo_top */
+
+        .s0005_combo_details_title{
+            font-size: 24px;
+        }
+
+        /* s0005_combo_main */
+
+
+        .s0005_combo_main .s0005_single_product {
+            max-width: calc(33.33% - 20px);
+        }
+
+        /* s0005_combo_bottom */
+
+        .s0005_combo_btn{
+            cursor: pointer;
+        }
+        .s0005_combo_close_icon{
+            cursor: pointer;
+        }
+        .s0005_combo_close_icon:hover svg{
+            transform: rotate(90deg);
+        }
+        .s0005_combo_close_icon:hover svg path{
+            fill: var(--primaryColor);
+        }
+
+
+
+
+
+        }
+
+        @media(min-width:1367px) {
+            .s0005_combo_all_products {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+    <section class="s0005_combo_offer_section s0005_universl">
+        <div class="s0005_section_overlay"></div>
+        <div class="s0005_container">
+            <div class="s0005_combo_offer_area">
+                <!-- s0005_combo_offer_top -->
+                <div class="s0005_combo_offer_top">
+                    <div class="s0005_combo_offer_top_wrapper s0005_title_and_counter_center">
+                        <div class="s0005_section_title_wrapper">
+                            <p class="s0005_section_title">Combo Offer</p>
+                        </div>
+                        <div class="s0005_time_duration_box">
+                            <span class="s0005_time_count">12d</span>
+                            <span class="s0005_time_separator">:</span>
+                            <span class="s0005_time_count">12h</span>
+                            <span class="s0005_time_separator">:</span>
+                            <span class="s0005_time_count">12m</span>
+                            <span class="s0005_time_separator">:</span>
+                            <span class="s0005_time_count">12s</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="s0005_combo_products_area">
+                    <div class="s0005_combo_all_products">
+                        <!-- s0005_single_product -->
+                        <div class="s0005_single_product s0005_card_shadow">
+                            <div class="s0005_product_top">
+                                <div class="s0005_item_overlay"></div>
+                                <div class="s0005_product_img">
+                                    <img src="combo_item/Image.jpg" alt="item1">
+                                </div>
+                                <div class="s0005_batch_wrapper s0005_batch_position_right">
+                                    <span class="s0005_batch_txt">Sale</span>
+                                </div>
+                                <div class="s0005_icon_group">
+                                    <div class="s0005_icon_group_wrapper">
+                                        <div class="s0005_wishlist_icon_wrapper">
+                                            <div class="s0005_tooltip">
+                                                <div class="s0005_tooltip_txt_wrapper">
+                                                    <p class="s0005_tooltip_txt">Add to Wishlist</p>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_icon s0005_wishlist_icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="11.505" height="10.995"
+                                                    viewBox="0 0 11.505 10.995">
+                                                    <path id="heart"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.757 -0.167)" fill="#1e272e"
+                                                        stroke="#1e272e" stroke-width="1.5" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="s0005_cart_view_icon_group">
+                                            <div class="s0005_cart_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">Add to Cart</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_cart_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 14 14">
+                                                        <path id="shopping-bag_1_" data-name="shopping-bag (1)"
+                                                            d="M10.5,3.5a3.5,3.5,0,1,0-7,0H0v8.75A1.75,1.75,0,0,0,1.75,14h10.5A1.75,1.75,0,0,0,14,12.25V3.5ZM7,1.167A2.333,2.333,0,0,1,9.333,3.5H4.667A2.333,2.333,0,0,1,7,1.167Z"
+                                                            fill="#1e272e" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_view_details_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">View details</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_view_details_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.2" height="12.2"
+                                                        viewBox="0 0 12.2 12.2">
+                                                        <path id="info_1_" data-name="info (1)"
+                                                            d="M12,6A6,6,0,1,1,6,0,6,6,0,0,1,12,6ZM7,6A1,1,0,0,0,6,5H5V6H6V9.5H7ZM6,2.5a.75.75,0,1,0,.75.75A.75.75,0,0,0,6,2.5Z"
+                                                            transform="translate(0.1 0.1)" stroke="#fff"
+                                                            stroke-width="0.2" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="s0005_item_action s0005_item_action_show">
+                                    <div class="s0005_item_action_content">
+                                        <span class="s0005_item_action_txt s0005_success_message">Add to cart
+                                            suceessfully</span>
+                                        <span class="s0005_item_action_txt s0005_error_message">Something wen't
+                                            wrong</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="s0005_product_bottom">
+                                <div class="s0005_product_content s0005_product_content_center">
+                                    <div class="s0005_product_review_area">
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s0005_product_name_wrapper">
+                                        <p class="s0005_product_name" title="Ceramic Teapot cereamic..">Ceramic
+                                            Teapot...
+                                        </p>
+
+                                    </div>
+                                    <div class="s0005_product_variant">
+                                        <span class="s0005_product_variant_txt">Black , Metal</span>
+                                    </div>
+                                    <div class="s0005_product_price_wrapper">
+                                        <span class="s0005_product_price s0005_product_regular_price">BDT 5000</span>
+                                        <span class="s0005_product_price s0005_product_old_price">BDT 4000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- s0005_single_product -->
+                        <div class="s0005_single_product s0005_card_shadow">
+                            <div class="s0005_product_top">
+                                <div class="s0005_item_overlay"></div>
+                                <div class="s0005_product_img">
+                                    <img src="combo_item/Image.jpg" alt="item1">
+                                </div>
+                                <div class="s0005_batch_wrapper s0005_batch_position_right">
+                                    <span class="s0005_batch_txt">Sale</span>
+                                </div>
+                                <div class="s0005_icon_group">
+                                    <div class="s0005_icon_group_wrapper">
+                                        <div class="s0005_wishlist_icon_wrapper">
+                                            <div class="s0005_tooltip">
+                                                <div class="s0005_tooltip_txt_wrapper">
+                                                    <p class="s0005_tooltip_txt">Add to Wishlist</p>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_icon s0005_wishlist_icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="11.505" height="10.995"
+                                                    viewBox="0 0 11.505 10.995">
+                                                    <path id="heart"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.757 -0.167)" fill="#1e272e"
+                                                        stroke="#1e272e" stroke-width="1.5" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="s0005_cart_view_icon_group">
+                                            <div class="s0005_cart_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">Add to Cart</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_cart_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 14 14">
+                                                        <path id="shopping-bag_1_" data-name="shopping-bag (1)"
+                                                            d="M10.5,3.5a3.5,3.5,0,1,0-7,0H0v8.75A1.75,1.75,0,0,0,1.75,14h10.5A1.75,1.75,0,0,0,14,12.25V3.5ZM7,1.167A2.333,2.333,0,0,1,9.333,3.5H4.667A2.333,2.333,0,0,1,7,1.167Z"
+                                                            fill="#1e272e" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_view_details_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">View details</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_view_details_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.2" height="12.2"
+                                                        viewBox="0 0 12.2 12.2">
+                                                        <path id="info_1_" data-name="info (1)"
+                                                            d="M12,6A6,6,0,1,1,6,0,6,6,0,0,1,12,6ZM7,6A1,1,0,0,0,6,5H5V6H6V9.5H7ZM6,2.5a.75.75,0,1,0,.75.75A.75.75,0,0,0,6,2.5Z"
+                                                            transform="translate(0.1 0.1)" stroke="#fff"
+                                                            stroke-width="0.2" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="s0005_item_action s0005_item_action_show">
+                                    <div class="s0005_item_action_content">
+                                        <span class="s0005_item_action_txt s0005_success_message">Add to cart
+                                            suceessfully</span>
+                                        <span class="s0005_item_action_txt s0005_error_message">Something wen't
+                                            wrong</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="s0005_product_bottom">
+                                <div class="s0005_product_content s0005_product_content_center">
+                                    <div class="s0005_product_review_area">
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s0005_product_name_wrapper">
+                                        <p class="s0005_product_name" title="Ceramic Teapot cereamic..">Ceramic
+                                            Teapot...
+                                        </p>
+
+                                    </div>
+                                    <div class="s0005_product_variant">
+                                        <span class="s0005_product_variant_txt">Black , Metal</span>
+                                    </div>
+                                    <div class="s0005_product_price_wrapper">
+                                        <span class="s0005_product_price s0005_product_regular_price">BDT 5000</span>
+                                        <span class="s0005_product_price s0005_product_old_price">BDT 4000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- s0005_single_product -->
+                        <div class="s0005_single_product s0005_card_shadow">
+                            <div class="s0005_product_top">
+                                <div class="s0005_item_overlay"></div>
+                                <div class="s0005_product_img">
+                                    <img src="combo_item/Image.jpg" alt="item1">
+                                </div>
+                                <div class="s0005_batch_wrapper s0005_batch_position_right">
+                                    <span class="s0005_batch_txt">Sale</span>
+                                </div>
+                                <div class="s0005_icon_group">
+                                    <div class="s0005_icon_group_wrapper">
+                                        <div class="s0005_wishlist_icon_wrapper">
+                                            <div class="s0005_tooltip">
+                                                <div class="s0005_tooltip_txt_wrapper">
+                                                    <p class="s0005_tooltip_txt">Add to Wishlist</p>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_icon s0005_wishlist_icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="11.505" height="10.995"
+                                                    viewBox="0 0 11.505 10.995">
+                                                    <path id="heart"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.757 -0.167)" fill="#1e272e"
+                                                        stroke="#1e272e" stroke-width="1.5" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="s0005_cart_view_icon_group">
+                                            <div class="s0005_cart_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">Add to Cart</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_cart_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 14 14">
+                                                        <path id="shopping-bag_1_" data-name="shopping-bag (1)"
+                                                            d="M10.5,3.5a3.5,3.5,0,1,0-7,0H0v8.75A1.75,1.75,0,0,0,1.75,14h10.5A1.75,1.75,0,0,0,14,12.25V3.5ZM7,1.167A2.333,2.333,0,0,1,9.333,3.5H4.667A2.333,2.333,0,0,1,7,1.167Z"
+                                                            fill="#1e272e" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_view_details_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">View details</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_view_details_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.2" height="12.2"
+                                                        viewBox="0 0 12.2 12.2">
+                                                        <path id="info_1_" data-name="info (1)"
+                                                            d="M12,6A6,6,0,1,1,6,0,6,6,0,0,1,12,6ZM7,6A1,1,0,0,0,6,5H5V6H6V9.5H7ZM6,2.5a.75.75,0,1,0,.75.75A.75.75,0,0,0,6,2.5Z"
+                                                            transform="translate(0.1 0.1)" stroke="#fff"
+                                                            stroke-width="0.2" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="s0005_item_action s0005_item_action_show">
+                                    <div class="s0005_item_action_content">
+                                        <span class="s0005_item_action_txt s0005_success_message">Add to cart
+                                            suceessfully</span>
+                                        <span class="s0005_item_action_txt s0005_error_message">Something wen't
+                                            wrong</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="s0005_product_bottom">
+                                <div class="s0005_product_content s0005_product_content_center">
+                                    <div class="s0005_product_review_area">
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s0005_product_name_wrapper">
+                                        <p class="s0005_product_name" title="Ceramic Teapot cereamic..">Ceramic
+                                            Teapot...
+                                        </p>
+
+                                    </div>
+                                    <div class="s0005_product_variant">
+                                        <span class="s0005_product_variant_txt">Black , Metal</span>
+                                    </div>
+                                    <div class="s0005_product_price_wrapper">
+                                        <span class="s0005_product_price s0005_product_regular_price">BDT 5000</span>
+                                        <span class="s0005_product_price s0005_product_old_price">BDT 4000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- s0005_single_product -->
+                        <div class="s0005_single_product s0005_card_shadow">
+                            <div class="s0005_product_top">
+                                <div class="s0005_item_overlay"></div>
+                                <div class="s0005_product_img">
+                                    <img src="combo_item/Image.jpg" alt="item1">
+                                </div>
+                                <div class="s0005_batch_wrapper s0005_batch_position_right">
+                                    <span class="s0005_batch_txt">Sale</span>
+                                </div>
+                                <div class="s0005_icon_group">
+                                    <div class="s0005_icon_group_wrapper">
+                                        <div class="s0005_wishlist_icon_wrapper">
+                                            <div class="s0005_tooltip">
+                                                <div class="s0005_tooltip_txt_wrapper">
+                                                    <p class="s0005_tooltip_txt">Add to Wishlist</p>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_icon s0005_wishlist_icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="11.505" height="10.995"
+                                                    viewBox="0 0 11.505 10.995">
+                                                    <path id="heart"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.757 -0.167)" fill="#1e272e"
+                                                        stroke="#1e272e" stroke-width="1.5" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="s0005_cart_view_icon_group">
+                                            <div class="s0005_cart_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">Add to Cart</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_cart_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 14 14">
+                                                        <path id="shopping-bag_1_" data-name="shopping-bag (1)"
+                                                            d="M10.5,3.5a3.5,3.5,0,1,0-7,0H0v8.75A1.75,1.75,0,0,0,1.75,14h10.5A1.75,1.75,0,0,0,14,12.25V3.5ZM7,1.167A2.333,2.333,0,0,1,9.333,3.5H4.667A2.333,2.333,0,0,1,7,1.167Z"
+                                                            fill="#1e272e" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_view_details_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">View details</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_view_details_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.2" height="12.2"
+                                                        viewBox="0 0 12.2 12.2">
+                                                        <path id="info_1_" data-name="info (1)"
+                                                            d="M12,6A6,6,0,1,1,6,0,6,6,0,0,1,12,6ZM7,6A1,1,0,0,0,6,5H5V6H6V9.5H7ZM6,2.5a.75.75,0,1,0,.75.75A.75.75,0,0,0,6,2.5Z"
+                                                            transform="translate(0.1 0.1)" stroke="#fff"
+                                                            stroke-width="0.2" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="s0005_item_action s0005_item_action_show">
+                                    <div class="s0005_item_action_content">
+                                        <span class="s0005_item_action_txt s0005_success_message">Add to cart
+                                            suceessfully</span>
+                                        <span class="s0005_item_action_txt s0005_error_message">Something wen't
+                                            wrong</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="s0005_product_bottom">
+                                <div class="s0005_product_content s0005_product_content_center">
+                                    <div class="s0005_product_review_area">
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s0005_product_name_wrapper">
+                                        <p class="s0005_product_name" title="Ceramic Teapot cereamic..">Ceramic
+                                            Teapot...
+                                        </p>
+
+                                    </div>
+                                    <div class="s0005_product_variant">
+                                        <span class="s0005_product_variant_txt">Black , Metal</span>
+                                    </div>
+                                    <div class="s0005_product_price_wrapper">
+                                        <span class="s0005_product_price s0005_product_regular_price">BDT 5000</span>
+                                        <span class="s0005_product_price s0005_product_old_price">BDT 4000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- s0005_single_product -->
+                        <div class="s0005_single_product s0005_card_shadow">
+                            <div class="s0005_product_top">
+                                <div class="s0005_item_overlay"></div>
+                                <div class="s0005_product_img">
+                                    <img src="combo_item/Image.jpg" alt="item1">
+                                </div>
+                                <div class="s0005_batch_wrapper s0005_batch_position_right">
+                                    <span class="s0005_batch_txt">Sale</span>
+                                </div>
+                                <div class="s0005_icon_group">
+                                    <div class="s0005_icon_group_wrapper">
+                                        <div class="s0005_wishlist_icon_wrapper">
+                                            <div class="s0005_tooltip">
+                                                <div class="s0005_tooltip_txt_wrapper">
+                                                    <p class="s0005_tooltip_txt">Add to Wishlist</p>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_icon s0005_wishlist_icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="11.505" height="10.995"
+                                                    viewBox="0 0 11.505 10.995">
+                                                    <path id="heart"
+                                                        d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                        transform="translate(0.757 -0.167)" fill="#1e272e"
+                                                        stroke="#1e272e" stroke-width="1.5" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="s0005_cart_view_icon_group">
+                                            <div class="s0005_cart_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">Add to Cart</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_cart_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 14 14">
+                                                        <path id="shopping-bag_1_" data-name="shopping-bag (1)"
+                                                            d="M10.5,3.5a3.5,3.5,0,1,0-7,0H0v8.75A1.75,1.75,0,0,0,1.75,14h10.5A1.75,1.75,0,0,0,14,12.25V3.5ZM7,1.167A2.333,2.333,0,0,1,9.333,3.5H4.667A2.333,2.333,0,0,1,7,1.167Z"
+                                                            fill="#1e272e" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="s0005_view_details_icon_wrapper">
+                                                <div class="s0005_tooltip">
+                                                    <div class="s0005_tooltip_txt_wrapper">
+                                                        <p class="s0005_tooltip_txt">View details</p>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_icon s0005_view_details_icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12.2" height="12.2"
+                                                        viewBox="0 0 12.2 12.2">
+                                                        <path id="info_1_" data-name="info (1)"
+                                                            d="M12,6A6,6,0,1,1,6,0,6,6,0,0,1,12,6ZM7,6A1,1,0,0,0,6,5H5V6H6V9.5H7ZM6,2.5a.75.75,0,1,0,.75.75A.75.75,0,0,0,6,2.5Z"
+                                                            transform="translate(0.1 0.1)" stroke="#fff"
+                                                            stroke-width="0.2" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="s0005_item_action s0005_item_action_show">
+                                    <div class="s0005_item_action_content">
+                                        <span class="s0005_item_action_txt s0005_success_message">Add to cart
+                                            suceessfully</span>
+                                        <span class="s0005_item_action_txt s0005_error_message">Something wen't
+                                            wrong</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="s0005_product_bottom">
+                                <div class="s0005_product_content s0005_product_content_center">
+                                    <div class="s0005_product_review_area">
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                        <span class="s0005_review_star">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                viewBox="0 0 11 11">
+                                                <path id="Star"
+                                                    d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                    transform="translate(-54 -64)" fill="#fed300" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="s0005_product_name_wrapper">
+                                        <p class="s0005_product_name" title="Ceramic Teapot cereamic..">Ceramic
+                                            Teapot...
+                                        </p>
+
+                                    </div>
+                                    <div class="s0005_product_variant">
+                                        <span class="s0005_product_variant_txt">Black , Metal</span>
+                                    </div>
+                                    <div class="s0005_product_price_wrapper">
+                                        <span class="s0005_product_price s0005_product_regular_price">BDT 5000</span>
+                                        <span class="s0005_product_price s0005_product_old_price">BDT 4000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- s0005_featured_item_btn_wrapper -->
+                <div class="s0005_featured_item_btn_wrapper">
+                    <button type="button" class="s0005_featured_item_btn s0005_common_btn">View All</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===========================================
+        =============== s0005_combo_details ============
+        =============================================-->
+
+        <div class="s0005_combo_details_popup">
+            <div class="s0005_combo_details_popup_overlay"></div>
+            <div class="s0005_combo_details_area">
+                <div class="s0005_combo_inner_content">
+                    <div class="s0005_combo_top">
+                        <div class="s0005_combo_top_content">
+                            <div class="s0005_combo_details_title_wrapper">
+                                <p class="s0005_combo_details_title">Combo Details</p>
+                            </div>
+                            <div class="s0005_combo_close_icon_wrapper">
+                                <span class="s0005_combo_close_icon">
+                                    <svg id="cross" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                                        <path id="cross-2" data-name="cross" d="M12,.707,11.293,0,6,5.293.707,0,0,.707,5.293,6,0,11.293.707,12,6,6.707,11.293,12,12,11.293,6.707,6Z"/>
+                                    </svg>                                      
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s0005_container">
+                        <div class="s0005_combo_main">
+                            <div class="s0005_combo_all_products">
+                                <!-- s0005_single_product -->
+                                <div class="s0005_single_product s0005_card_shadow">
+                                    <div class="s0005_product_top">
+                                        <div class="s0005_item_overlay"></div>
+                                        <div class="s0005_product_img">
+                                            <img src="combo_item/Image.jpg" alt="item1">
+                                        </div>
+                                        <div class="s0005_icon_group">
+                                            <div class="s0005_icon_group_wrapper">
+                                                <div class="s0005_wishlist_icon_wrapper">
+                                                    <div class="s0005_tooltip">
+                                                        <div class="s0005_tooltip_txt_wrapper">
+                                                            <p class="s0005_tooltip_txt">Add to Wishlist</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="s0005_icon s0005_wishlist_icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="11.505" height="10.995"
+                                                            viewBox="0 0 11.505 10.995">
+                                                            <path id="heart"
+                                                                d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                                transform="translate(0.757 -0.167)" fill="#1e272e"
+                                                                stroke="#1e272e" stroke-width="1.5" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_cart_view_icon_group">
+                                                    <div class="s0005_cart_icon_wrapper">
+                                                        <div class="s0005_tooltip">
+                                                            <div class="s0005_tooltip_txt_wrapper">
+                                                                <p class="s0005_tooltip_txt">Add to Cart</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="s0005_icon s0005_cart_icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                                viewBox="0 0 14 14">
+                                                                <path id="shopping-bag_1_" data-name="shopping-bag (1)"
+                                                                    d="M10.5,3.5a3.5,3.5,0,1,0-7,0H0v8.75A1.75,1.75,0,0,0,1.75,14h10.5A1.75,1.75,0,0,0,14,12.25V3.5ZM7,1.167A2.333,2.333,0,0,1,9.333,3.5H4.667A2.333,2.333,0,0,1,7,1.167Z"
+                                                                    fill="#1e272e" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="s0005_view_details_icon_wrapper">
+                                                        <div class="s0005_tooltip">
+                                                            <div class="s0005_tooltip_txt_wrapper">
+                                                                <p class="s0005_tooltip_txt">View details</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="s0005_icon s0005_view_details_icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12.2" height="12.2"
+                                                                viewBox="0 0 12.2 12.2">
+                                                                <path id="info_1_" data-name="info (1)"
+                                                                    d="M12,6A6,6,0,1,1,6,0,6,6,0,0,1,12,6ZM7,6A1,1,0,0,0,6,5H5V6H6V9.5H7ZM6,2.5a.75.75,0,1,0,.75.75A.75.75,0,0,0,6,2.5Z"
+                                                                    transform="translate(0.1 0.1)" stroke="#fff"
+                                                                    stroke-width="0.2" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+    
+                                        <div class="s0005_item_action s0005_item_action_show">
+                                            <div class="s0005_item_action_content">
+                                                <span class="s0005_item_action_txt s0005_success_message">Add to cart
+                                                    suceessfully</span>
+                                                <span class="s0005_item_action_txt s0005_error_message">Something wen't
+                                                    wrong</span>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                    <div class="s0005_product_bottom">
+                                        <div class="s0005_product_content s0005_product_content_center">
+                                            <div class="s0005_product_review_area">
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <div class="s0005_product_name_wrapper">
+                                                <p class="s0005_product_name" title="Ceramic Teapot cereamic..">Ceramic
+                                                    Teapot...
+                                                </p>
+    
+                                            </div>
+                                            <!-- <div class="s0005_product_variant">
+                                                <span class="s0005_product_variant_txt">Black , Metal</span>
+                                            </div> -->
+                                            <div class="s0005_product_price_wrapper">
+                                                <span class="s0005_product_price s0005_product_regular_price">BDT 5000</span>
+                                                <!-- <span class="s0005_product_price s0005_product_old_price">BDT 4000</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- s0005_single_product -->
+                                <div class="s0005_single_product s0005_card_shadow">
+                                    <div class="s0005_product_top">
+                                        <div class="s0005_item_overlay"></div>
+                                        <div class="s0005_product_img">
+                                            <img src="combo_item/Image.jpg" alt="item1">
+                                        </div>
+                                        <div class="s0005_icon_group">
+                                            <div class="s0005_icon_group_wrapper">
+                                                <div class="s0005_wishlist_icon_wrapper">
+                                                    <div class="s0005_tooltip">
+                                                        <div class="s0005_tooltip_txt_wrapper">
+                                                            <p class="s0005_tooltip_txt">Add to Wishlist</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="s0005_icon s0005_wishlist_icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="11.505" height="10.995"
+                                                            viewBox="0 0 11.505 10.995">
+                                                            <path id="heart"
+                                                                d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                                transform="translate(0.757 -0.167)" fill="#1e272e"
+                                                                stroke="#1e272e" stroke-width="1.5" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_cart_view_icon_group">
+                                                    <div class="s0005_cart_icon_wrapper">
+                                                        <div class="s0005_tooltip">
+                                                            <div class="s0005_tooltip_txt_wrapper">
+                                                                <p class="s0005_tooltip_txt">Add to Cart</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="s0005_icon s0005_cart_icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                                viewBox="0 0 14 14">
+                                                                <path id="shopping-bag_1_" data-name="shopping-bag (1)"
+                                                                    d="M10.5,3.5a3.5,3.5,0,1,0-7,0H0v8.75A1.75,1.75,0,0,0,1.75,14h10.5A1.75,1.75,0,0,0,14,12.25V3.5ZM7,1.167A2.333,2.333,0,0,1,9.333,3.5H4.667A2.333,2.333,0,0,1,7,1.167Z"
+                                                                    fill="#1e272e" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="s0005_view_details_icon_wrapper">
+                                                        <div class="s0005_tooltip">
+                                                            <div class="s0005_tooltip_txt_wrapper">
+                                                                <p class="s0005_tooltip_txt">View details</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="s0005_icon s0005_view_details_icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12.2" height="12.2"
+                                                                viewBox="0 0 12.2 12.2">
+                                                                <path id="info_1_" data-name="info (1)"
+                                                                    d="M12,6A6,6,0,1,1,6,0,6,6,0,0,1,12,6ZM7,6A1,1,0,0,0,6,5H5V6H6V9.5H7ZM6,2.5a.75.75,0,1,0,.75.75A.75.75,0,0,0,6,2.5Z"
+                                                                    transform="translate(0.1 0.1)" stroke="#fff"
+                                                                    stroke-width="0.2" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+    
+                                        <div class="s0005_item_action s0005_item_action_show">
+                                            <div class="s0005_item_action_content">
+                                                <span class="s0005_item_action_txt s0005_success_message">Add to cart
+                                                    suceessfully</span>
+                                                <span class="s0005_item_action_txt s0005_error_message">Something wen't
+                                                    wrong</span>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                    <div class="s0005_product_bottom">
+                                        <div class="s0005_product_content s0005_product_content_center">
+                                            <div class="s0005_product_review_area">
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <div class="s0005_product_name_wrapper">
+                                                <p class="s0005_product_name" title="Ceramic Teapot cereamic..">Ceramic
+                                                    Teapot...
+                                                </p>
+    
+                                            </div>
+                                            <!-- <div class="s0005_product_variant">
+                                                <span class="s0005_product_variant_txt">Black , Metal</span>
+                                            </div> -->
+                                            <div class="s0005_product_price_wrapper">
+                                                <span class="s0005_product_price s0005_product_regular_price">BDT 5000</span>
+                                                <!-- <span class="s0005_product_price s0005_product_old_price">BDT 4000</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- s0005_single_product -->
+                                <div class="s0005_single_product s0005_card_shadow">
+                                    <div class="s0005_product_top">
+                                        <div class="s0005_item_overlay"></div>
+                                        <div class="s0005_product_img">
+                                            <img src="combo_item/Image.jpg" alt="item1">
+                                        </div>
+                                        <div class="s0005_icon_group">
+                                            <div class="s0005_icon_group_wrapper">
+                                                <div class="s0005_wishlist_icon_wrapper">
+                                                    <div class="s0005_tooltip">
+                                                        <div class="s0005_tooltip_txt_wrapper">
+                                                            <p class="s0005_tooltip_txt">Add to Wishlist</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="s0005_icon s0005_wishlist_icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="11.505" height="10.995"
+                                                            viewBox="0 0 11.505 10.995">
+                                                            <path id="heart"
+                                                                d="M7.286.917A2.666,2.666,0,0,0,5,2.291,2.666,2.666,0,0,0,2.7.917,2.832,2.832,0,0,0,0,3.853C0,6.675,4.56,9.934,4.754,10.072l.241.17.241-.17c.194-.137,4.757-3.4,4.757-6.219A2.832,2.832,0,0,0,7.286.917Z"
+                                                                transform="translate(0.757 -0.167)" fill="#1e272e"
+                                                                stroke="#1e272e" stroke-width="1.5" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div class="s0005_cart_view_icon_group">
+                                                    <div class="s0005_cart_icon_wrapper">
+                                                        <div class="s0005_tooltip">
+                                                            <div class="s0005_tooltip_txt_wrapper">
+                                                                <p class="s0005_tooltip_txt">Add to Cart</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="s0005_icon s0005_cart_icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                                viewBox="0 0 14 14">
+                                                                <path id="shopping-bag_1_" data-name="shopping-bag (1)"
+                                                                    d="M10.5,3.5a3.5,3.5,0,1,0-7,0H0v8.75A1.75,1.75,0,0,0,1.75,14h10.5A1.75,1.75,0,0,0,14,12.25V3.5ZM7,1.167A2.333,2.333,0,0,1,9.333,3.5H4.667A2.333,2.333,0,0,1,7,1.167Z"
+                                                                    fill="#1e272e" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="s0005_view_details_icon_wrapper">
+                                                        <div class="s0005_tooltip">
+                                                            <div class="s0005_tooltip_txt_wrapper">
+                                                                <p class="s0005_tooltip_txt">View details</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="s0005_icon s0005_view_details_icon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12.2" height="12.2"
+                                                                viewBox="0 0 12.2 12.2">
+                                                                <path id="info_1_" data-name="info (1)"
+                                                                    d="M12,6A6,6,0,1,1,6,0,6,6,0,0,1,12,6ZM7,6A1,1,0,0,0,6,5H5V6H6V9.5H7ZM6,2.5a.75.75,0,1,0,.75.75A.75.75,0,0,0,6,2.5Z"
+                                                                    transform="translate(0.1 0.1)" stroke="#fff"
+                                                                    stroke-width="0.2" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+    
+                                        <div class="s0005_item_action s0005_item_action_show">
+                                            <div class="s0005_item_action_content">
+                                                <span class="s0005_item_action_txt s0005_success_message">Add to cart
+                                                    suceessfully</span>
+                                                <span class="s0005_item_action_txt s0005_error_message">Something wen't
+                                                    wrong</span>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                    <div class="s0005_product_bottom">
+                                        <div class="s0005_product_content s0005_product_content_center">
+                                            <div class="s0005_product_review_area">
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                                <span class="s0005_review_star">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11"
+                                                        viewBox="0 0 11 11">
+                                                        <path id="Star"
+                                                            d="M59.5,72.843,62.9,75,62,70.93l3-2.736-3.955-.357L59.5,64l-1.545,3.837L54,68.194l3,2.736L56.1,75Z"
+                                                            transform="translate(-54 -64)" fill="#fed300" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <div class="s0005_product_name_wrapper">
+                                                <p class="s0005_product_name" title="Ceramic Teapot cereamic..">Ceramic
+                                                    Teapot...
+                                                </p>
+    
+                                            </div>
+                                            <!-- <div class="s0005_product_variant">
+                                                <span class="s0005_product_variant_txt">Black , Metal</span>
+                                            </div> -->
+                                            <div class="s0005_product_price_wrapper">
+                                                <span class="s0005_product_price s0005_product_regular_price">BDT 5000</span>
+                                                <!-- <span class="s0005_product_price s0005_product_old_price">BDT 4000</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s0005_indicator"></div>
+                    <div class="s0005_combo_bottom">
+                        <div class="s0005_combo_bottom_inner_content">
+                            <div class="s0005_combo_price s0005_product_price_wrapper">
+                                <span class="s0005_product_price s0005_product_old_price">BDT 4000</span>
+                                <span class="s0005_product_price s0005_product_regular_price">BDT 5000</span>
+                            </div>
+                            <div class="s0005_combo_btn_wrapper">
+                                <button type="button" class="s0005_combo_btn">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
